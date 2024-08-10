@@ -1,0 +1,78 @@
+Question,Mental_Disorder,Never,Rarely,Sometimes,Often,Very_Often
+Little interest or pleasure in doing things,Depression,0,1,2,3,4
+"Feeling down, depressed, or hopeless",Depression,0,1,2,3,4
+"Trouble falling or staying asleep, or sleeping too much",Depression,0,1,2,3,4
+Feeling tired or having little energy,Depression,0,1,2,3,4
+Poor appetite or overeating,Depression,0,1,2,3,4
+Feeling bad about yourself - or that you are a failure or have let yourself or your family down,Depression,0,1,2,3,4
+"Trouble concentrating on things, such as reading the newspaper or watching television",Depression,0,1,2,3,4
+Moving or speaking so slowly that other people could have noticed or the opposite - being so fidgety or restless that you have been moving around a lot more than usual,Depression,0,1,2,3,4
+"Thoughts that you would be better off dead, or of hurting yourself",Depression,0,1,2,3,4
+"If you checked off any problems, how difficult have these problems made it for you at work, home, or with other people?",Depression,0,1,2,3,4
+"Feeling nervous, anxious, or on edge",Anxiety,0,1,2,3,4
+Not being able to stop or control worrying,Anxiety,0,1,2,3,4
+Worrying too much about different things,Anxiety,0,1,2,3,4
+Trouble relaxing,Anxiety,0,1,2,3,4
+Being so restless that it is hard to sit still,Anxiety,0,1,2,3,4
+Becoming easily annoyed or irritable,Anxiety,0,1,2,3,4
+"Feeling afraid, as if something awful might happen",Anxiety,0,1,2,3,4
+"1. How often do you have trouble wrapping up the final details of a project, once the challenging parts have been done?",ADHD,0,1,2,3,4
+2. How often do you have difficulty getting things in order when you have to do a task that requires organization?,ADHD,0,1,2,3,4
+3. How often do you have problems remembering appointments or obligations?,ADHD,0,1,2,3,4
+"4. When you have a task that requires a lot of thought, how often do you avoid or delay getting started?",ADHD,0,1,2,3,4
+5. How often do you fidget or squirm with your hands or feet when you have to sit down for a long time?,ADHD,0,1,2,3,4
+"6. How often do you feel overly active and compelled to do things, like you were driven by a motor?",ADHD,0,1,2,3,4
+7. How often do you make careless mistakes when you have to work on a boring or difficult project?,ADHD,0,1,2,3,4
+8. How often do you have difficulty keeping your attention when you are doing boring or repetitive work?,ADHD,0,1,2,3,4
+"9. How often do you have difficulty concentrating on what people say to you, even when they are speaking to you directly?",ADHD,0,1,2,3,4
+10. How often do you misplace or have difficulty finding things at home or at work?,ADHD,0,1,2,3,4
+11. How often are you distracted by activity or noise around you?,ADHD,0,1,2,3,4
+12. How often do you leave your seat in meetings or other situations in which you are expected to remain seated?,ADHD,0,1,2,3,4
+13. How often do you feel restless or fidgety?,ADHD,0,1,2,3,4
+14. How often do you have difficulty unwinding and relaxing when you have time to yourself?,ADHD,0,1,2,3,4
+15. How often do you find yourself talking too much when you are in social situations?,ADHD,0,1,2,3,4
+"16. When you’re in a conversation, how often do you find yourself finishing the sentences of the people you are talking to, before they can finish them themselves?",ADHD,0,1,2,3,4
+17. How often do you have difficulty waiting your turn in situations when turn taking is required?,ADHD,0,1,2,3,4
+18. How often do you interrupt others when they are busy?,ADHD,0,1,2,3,4
+"In the past month, have you had nightmares about the event(s) or thought about the event(s) when you did not want to?",PTSD,0,1,2,3,4
+"In the past month, have you tried hard not to think about the event(s) or went out of your way to avoid situations that reminded you of the event(s)?",PTSD,0,1,2,3,4
+"In the past month, have you been constantly on guard, watchful, or easily startled?",PTSD,0,1,2,3,4
+"In the past month, have you felt numb or detached from people, activities, or your surroundings?",PTSD,0,1,2,3,4
+"In the past month, have you felt guilty or unable to stop blaming yourself or others for the event(s) or any problems the event(s) may have caused?",PTSD,0,1,2,3,4
+"1. Do familiar surroundings sometimes seem strange, confusing, threatening, or unreal to you?",Psychosis & Schizophrenia,0,1,2,3,4
+"2. Have you heard unusual sounds like banging, clicking, hissing, clapping, or ringing in your ears?",Psychosis & Schizophrenia,0,1,2,3,4
+3. Do things that you see appear different from the way they usually do?,Psychosis & Schizophrenia,0,1,2,3,4
+"4. Have you had experiences with telepathy, psychic forces, or fortune telling?",Psychosis & Schizophrenia,0,1,2,3,4
+5. Have you felt that you are not in control of your own ideas or thoughts?,Psychosis & Schizophrenia,0,1,2,3,4
+"6. Do you have difficulty getting your point across, because you ramble or go off the track a lot when you talk?",Psychosis & Schizophrenia,0,1,2,3,4
+7. Do you have strong feelings or beliefs about being unusually gifted or talented in some way?,Psychosis & Schizophrenia,0,1,2,3,4
+8. Do you feel that other people are watching you or talking about you?,Psychosis & Schizophrenia,0,1,2,3,4
+"9. Do you sometimes get strange feelings on or just beneath your skin, like bugs crawling?",Psychosis & Schizophrenia,0,1,2,3,4
+10. Do you sometimes feel suddenly distracted by distant sounds that you are not normally aware of?,Psychosis & Schizophrenia,0,1,2,3,4
+"11. Have you had the sense that some person or force is around you, although you couldn’t see anyone?",Psychosis & Schizophrenia,0,1,2,3,4
+12. Do you worry at times that something may be wrong with your mind?,Psychosis & Schizophrenia,0,1,2,3,4
+"13. Have you ever felt that you don't exist, the world does not exist, or that you are dead?",Psychosis & Schizophrenia,0,1,2,3,4
+14. Have you been confused at times whether something you experienced was real or imaginary?,Psychosis & Schizophrenia,0,1,2,3,4
+15. Do you hold beliefs that other people would find unusual or bizarre?,Psychosis & Schizophrenia,0,1,2,3,4
+"16. Do you feel that parts of your body have changed in some way, or that parts of your body are working differently?",Psychosis & Schizophrenia,0,1,2,3,4
+17. Are your thoughts sometimes so strong that you can almost hear them?,Psychosis & Schizophrenia,0,1,2,3,4
+18. Do you find yourself feeling mistrustful or suspicious of other people?,Psychosis & Schizophrenia,0,1,2,3,4
+"19. Have you seen unusual things like flashes, flames, blinding light, or geometric figures?",Psychosis & Schizophrenia,0,1,2,3,4
+20. Have you seen things that other people can't see or don't seem to see?,Psychosis & Schizophrenia,0,1,2,3,4
+21. Do people sometimes find it hard to understand what you are saying?,Psychosis & Schizophrenia,0,1,2,3,4
+ Has there ever been a period of time when you were not your usual self and...You felt so good or hyper that other people thought you were not your normal self or were so hyper that you got into trouble?,Bipolar,0,1,2,3,4
+You were so irritable that you shouted at people or started fights or arguments?,Bipolar,0,1,2,3,4
+You felt much more self-confident than usual?,Bipolar,0,1,2,3,4
+You got much less sleep than usual and found you didn’t really miss it?,Bipolar,0,1,2,3,4
+You were much more talkative or spoke much faster than usual?,Bipolar,0,1,2,3,4
+Thoughts raced through your head or you couldn’t slow your mind down?,Bipolar,0,1,2,3,4
+You were so easily distracted by things around you that you had trouble concentrating or staying on track?,Bipolar,0,1,2,3,4
+You had much more energy than usual?,Bipolar,0,1,2,3,4
+"You were much more social or outgoing than usual, for example, you telephoned friends in the middle of the night?",Bipolar,0,1,2,3,4
+You were much more interested in sex than usual?,Bipolar,0,1,2,3,4
+"You did things that were unusual for you or that other people might have thought were excessive, foolish, or risky?",Bipolar,0,1,2,3,4
+Spending money got you or your family into trouble?,Bipolar,0,1,2,3,4
+"If you checked YES to more than one of the above, have several of these ever happened during the same period of time?",Bipolar,0,1,2,3,4
+Did the problem any issue,Bipolar,0,1,2,3,4
+"Have any of your blood relatives had manic-depressive illness or bipolar disorder? i.e. Children, siblings, parents, grandparents, aunts, and uncles.",Bipolar,0,1,2,3,4
+Has a health professional ever told you that you have manic-depressive illness or bipolar disorder?,Bipolar,0,1,2,3,4

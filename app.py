@@ -22,16 +22,20 @@ def classify_mental_disorder(csv_file_path, user_responses):
     }
     
     # Ensure that we only process as many rows as we have responses for
-    for i, row in enumerate(df.iterrows()):
+    for i, row in df.iterrows():
         if i >= len(user_responses):
             print("Warning: More questions than user responses. Stopping at available responses.")
             break
         
-        disorder = row[1]['Mental_Disorder']
-        response_value = user_responses[i]
+        disorder = row['Mental_Disorder']
+        response = user_responses[i]
+        
+        # Map response to the corresponding column value
+        score = row[response]  # 'response' is the string ('Never', 'Rarely', etc.)
         
         # Update the score for the corresponding mental disorder
-        disorder_scores[disorder] += response_value
+        if disorder in disorder_scores:
+            disorder_scores[disorder] += score
     
     # Determine the disorder with the highest score
     predicted_disorder = max(disorder_scores, key=disorder_scores.get)
@@ -39,8 +43,8 @@ def classify_mental_disorder(csv_file_path, user_responses):
     return predicted_disorder
 
 # Example usage (replace with actual user inputs):
-user_responses = [3, 2, 1, 4, 0, 3, 2, 1, 3, 4, 2, 3, 1, 2, 3, 0, 1, 2, 3, 4, 2, 1, 3, 4, 2, 1, 3, 4, 2, 1, 3, 4, 2, 1, 3, 4, 2, 1]  
-csv_file_path = "question_final.csv"
+user_responses = ['Often', 'Very_Often', 'Sometimes', 'Rarely']  # This should match the options in your CSV
+csv_file_path = "question_final.csv"  # Replace with the actual path
 
 try:
     result = classify_mental_disorder(csv_file_path, user_responses)
@@ -49,4 +53,3 @@ except KeyError as e:
     print(e)
 except IndexError as e:
     print(f"Error: {e}. Please ensure the number of responses matches the number of questions.")
-

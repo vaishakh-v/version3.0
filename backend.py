@@ -7,9 +7,9 @@ app = Flask(__name__)
 def index():
     if request.method == 'POST':
         user_responses = [int(request.form[f'question_{i+1}']) for i in range(total_questions)]
-        result = classify_mental_disorder('path_to_your_questions_file.csv', user_responses)
-        return render_template('result.html', result=result)
-    return render_template('index.html')
+        result = classify_mental_disorder('question_final.csv', user_responses)
+        return render_template('result.htm', result=result)
+    return render_template('index.htm', total_questions=total_questions)
 
 def classify_mental_disorder(csv_file_path, user_responses):
     df = pd.read_csv(csv_file_path)
@@ -32,5 +32,5 @@ def classify_mental_disorder(csv_file_path, user_responses):
     return predicted_disorder
 
 if __name__ == '__main__':
-    total_questions = 70  # Set this to the number of questions in your CSV file
+    total_questions = 78  # Set this to the number of questions in your CSV file
     app.run(debug=True)

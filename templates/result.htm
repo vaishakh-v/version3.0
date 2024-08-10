@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Assessment Result</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Your Assessment Result</h1>
-        <p>You are most likely experiencing:</p>
-        <h2>{{ result }}</h2>
-        <a href="/">Go back to the questionnaire</a>
-    </div>
+    <h1>Assessment Result</h1>
+    <p>The user is most likely experiencing: <strong>{{ result }}</strong></p>
+    <br>
+    <a href="/">Go back to the questionnaire</a>
 </body>
 </html>

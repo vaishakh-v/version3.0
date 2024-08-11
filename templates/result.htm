@@ -6,24 +6,29 @@
     <title>Assessment Result</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
         .result-container {
             background-color: #ffffff;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 500px;
-            margin: 0 auto;
+            max-width: 600px;
+            margin: 50px auto;
         }
 
         h1 {
-            color: #333333;
-            font-size: 28px;
-            margin-bottom: 20px;
+            color: #444444;
+            font-size: 32px;
+            margin-bottom: 30px;
         }
 
         .result-text {
-            font-size: 20px;
+            font-size: 22px;
             color: #007BFF;
             margin-bottom: 30px;
             font-weight: bold;
@@ -37,10 +42,10 @@
             display: inline-block;
             background-color: #007BFF;
             color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
+            padding: 12px 24px;
+            border-radius: 5px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             transition: background-color 0.3s ease;
         }
 
@@ -52,7 +57,7 @@
 <body>
     <div class="result-container">
         <h1>Assessment Result</h1>
-        <p class="result-text">The user is most likely experiencing: <strong>{{ result }}</strong></p>
+        <p class="result-text">You are most likely experiencing: <strong>{{ result }}</strong></p>
         <a href="/" class="back-link">Go back to the questionnaire</a>
     </div>
 </body>

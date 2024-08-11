@@ -8,13 +8,8 @@ model = load_model('models/question_selector_model.h5')
 # Load the encoders and scaler
 with open('models/le_gender.pkl', 'rb') as f:
     le_gender = pickle.load(f)
-
 with open('models/le_location.pkl', 'rb') as f:
     le_location = pickle.load(f)
-
-with open('models/le_disorder.pkl', 'rb') as f:
-    le_disorder = pickle.load(f)
-
 with open('models/scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 

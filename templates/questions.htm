@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Questionnaire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Answer the Following Questions</h1>
+        <form action="/result" method="POST">
+            {% for question in selected_questions %}
+                <div>
+                    <label for="question_{{ loop.index }}">{{ question['Question'] }}</label>
+                    <select id="question_{{ loop.index }}" name="question_{{ loop.index }}">
+                        <option value="0">Never</option>
+                        <option value="1">Rarely</option>
+                        <option value="2">Sometimes</option>
+                        <option value="3">Often</option>
+                        <option value="4">Very Often</option>
+                    </select>
+                </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

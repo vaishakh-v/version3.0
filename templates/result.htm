@@ -4,11 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assessment Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .result-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .result-text {
+            font-size: 20px;
+            color: #007BFF;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .result-text strong {
+            color: #FF5733;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Assessment Result</h1>
-    <p>The user is most likely experiencing: <strong>{{ result }}</strong></p>
-    <br>
-    <a href="/">Go back to the questionnaire</a>
+    <div class="result-container">
+        <h1>Assessment Result</h1>
+        <p class="result-text">The user is most likely experiencing: <strong>{{ result }}</strong></p>
+        <a href="/" class="back-link">Go back to the questionnaire</a>
+    </div>
 </body>
 </html>

@@ -1,17 +1,31 @@
+from flask import Flask, render_template, request
 import pandas as pd
 
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        age = int(request.form['age'])
+        gender = request.form['gender']
+        location = request.form['location']
+        trauma = int(request.form['trauma'])
+        
+        # Placeholder for machine learning model to select relevant questions based on the user's parameters
+        selected_questions = select_relevant_questions(age, gender, location, trauma)
+        
+        return render_template('questions.htm', selected_questions=selected_questions)
+
+    return render_template('index.htm')
+
+@app.route('/result', methods=['POST'])
+def result():
+    user_responses = [int(request.form[f'question_{i+1}']) for i in range(len(request.form)-1)] # Adjusted to dynamically count questions
+    result = classify_mental_disorder('data/question_final.csv', user_responses)
+    return render_template('result.htm', result=result)
+
 def classify_mental_disorder(csv_file_path, user_responses):
-    # Load the CSV file
     df = pd.read_csv(csv_file_path)
-    
-    # Print the column names to verify the correct names
-    print("Columns in CSV:", df.columns)
-    
-    # Check if 'Mental_Disorder' column exists
-    if 'Mental_Disorder' not in df.columns:
-        raise KeyError("'Mental_Disorder' column is not found in the CSV file.")
-    
-    # Initialize a dictionary to keep track of scores for each disorder
     disorder_scores = {
         "Depression": 0,
         "Anxiety": 0,
@@ -21,35 +35,23 @@ def classify_mental_disorder(csv_file_path, user_responses):
         "Bipolar": 0
     }
     
-    # Ensure that we only process as many rows as we have responses for
     for i, row in df.iterrows():
         if i >= len(user_responses):
-            print("Warning: More questions than user responses. Stopping at available responses.")
             break
         
         disorder = row['Mental_Disorder']
-        response = user_responses[i]
-        
-        # Map response to the corresponding column value
-        score = row[response]  # 'response' is the string ('Never', 'Rarely', etc.)
-        
-        # Update the score for the corresponding mental disorder
-        if disorder in disorder_scores:
-            disorder_scores[disorder] += score
+        response_value = user_responses[i]
+        disorder_scores[disorder] += response_value
     
-    # Determine the disorder with the highest score
     predicted_disorder = max(disorder_scores, key=disorder_scores.get)
     
     return predicted_disorder
 
-# Example usage (replace with actual user inputs):
-user_responses = ['Often', 'Very_Often', 'Sometimes', 'Rarely']  # This should match the options in your CSV
-csv_file_path = "question_final.csv"  # Replace with the actual path
+def select_relevant_questions(age, gender, location, trauma):
+    # Implement machine learning model to return a subset of questions based on user parameters
+    # For now, this is a placeholder that selects all questions
+    df = pd.read_csv('data/question_final.csv')
+    return df.to_dict(orient='records')
 
-try:
-    result = classify_mental_disorder(csv_file_path, user_responses)
-    print(f"The user is most likely experiencing: {result}")
-except KeyError as e:
-    print(e)
-except IndexError as e:
-    print(f"Error: {e}. Please ensure the number of responses matches the number of questions.")
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Questionnaire</title>
+    <title>Mental Health Assessment</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Mental Health Questionnaire</h1>
+        <h1>Mental Health Assessment</h1>
         <form action="/" method="POST">
-            {% for i in range(1, total_questions + 1) %}
-                <div>
-                    <label for="question_{{ i }}">Question {{ i }}:</label>
-                    <select id="question_{{ i }}" name="question_{{ i }}">
-                        <option value="0">Never</option>
-                        <option value="1">Rarely</option>
-                        <option value="2">Sometimes</option>
-                        <option value="3">Often</option>
-                        <option value="4">Very Often</option>
-                    </select>
-                </div>
-            {% endfor %}
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div>
+                <label for="trauma">Past Trauma (0-4):</label>
+                <input type="number" id="trauma" name="trauma" min="0" max="4" required>
+            </div>
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit">Start Assessment</button>
         </form>
     </div>
 </body>

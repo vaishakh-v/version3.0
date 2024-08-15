@@ -1,18 +1,25 @@
+import os
+
+# Disable oneDNN custom operations
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
 from flask import Flask, render_template, request
 import pandas as pd
 import numpy as np
 from tensorflow.keras.models import load_model
 import pickle
 
+
+
 app = Flask(__name__)
 
 # Load the model and preprocessing tools
 model = load_model('models/question_selector_model.h5')
-with open('models/le_gender.pkl', 'rb') as f:
+with open('models/le_gender.pkl', 'rb', encoding='utf-8') as f:
     le_gender = pickle.load(f)
-with open('models/le_location.pkl', 'rb') as f:
+with open('models/le_location.pkl', 'rb', encoding='utf-8') as f:
     le_location = pickle.load(f)
-with open('models/scaler.pkl', 'rb') as f:
+with open('models/scaler.pkl', 'rb', encoding='utf-8') as f:
     scaler = pickle.load(f)
 
 @app.route('/', methods=['GET', 'POST'])

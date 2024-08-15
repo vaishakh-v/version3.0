@@ -1,3 +1,6 @@
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+import tensorflow as tf
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -7,9 +10,13 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
 import pickle
 
+# Ensure 'models' directory exists
+if not os.path.exists('models'):
+    os.makedirs('models')
+
 # Load the data
-questions_df = pd.read_csv('data/questions_data.csv')
-responses_df = pd.read_csv('data/user_responses.csv')
+questions_df = pd.read_csv(r'data\question_final.csv')  # Use raw string to handle backslashes
+responses_df = pd.read_csv(r'data\user_responses.csv')  # Use raw string to handle backslashes
 
 # Merge the dataframes on 'Question_ID'
 data = pd.merge(responses_df, questions_df, on='Question_ID')
@@ -48,12 +55,11 @@ with open('models/scaler.pkl', 'wb') as f:
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Build the neural network model
 model = Sequential([
     Dense(64, input_dim=X_train.shape[1], activation='relu'),
     Dropout(0.5),
     Dense(32, activation='relu'),
-    Dense(len(np.unique(y)), activation='softmax')  # Output layer
+    Dense(len(np.unique(y)), activation='softmax')  # Output layer for multi-class classification
 ])
 
 # Compile the model
@@ -70,5 +76,5 @@ loss, accuracy = model.evaluate(X_test, y_test)
 print(f"Test Accuracy: {accuracy * 100:.2f}%")
 
 # Save the model
-model.save('models/question_selector_model.h5')
+model.save('./models/question_selector_model.h5')
 print("Model saved as 'models/question_selector_model.h5'.")

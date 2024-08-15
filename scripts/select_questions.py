@@ -1,31 +1,39 @@
-from tensorflow.keras.models import load_model
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import mutual_info_classif
+from sklearn.model_selection import train_test_split
 import numpy as np
-import pickle
+import pandas as pd
 
-# Load the saved model
-model = load_model('models/question_selector_model.h5')
+# Assuming you have a DataFrame df with 78 questions as features and multiple disorders as labels
+X = df.iloc[:, :-n_disorders]  # Features (78 questions)
+y = df.iloc[:, -n_disorders:]  # Labels (disorders)
 
-# Load the encoders and scaler
-with open('models/le_gender.pkl', 'rb') as f:
-    le_gender = pickle.load(f)
-with open('models/le_location.pkl', 'rb') as f:
-    le_location = pickle.load(f)
-with open('models/scaler.pkl', 'rb') as f:
-    scaler = pickle.load(f)
+# Split data into train and test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Example new user data
-# Format: [Age, Gender, Location, Last_Response]
-# Ensure that Gender and Location are encoded in the same way as during training
-new_user_data = np.array([[30, 1, 2, 3]])  # Example: Age=30, Gender=1, Location=2, Response=3
+# Calculate mutual information for each question with respect to each disorder
+mi_scores = np.array([mutual_info_classif(X_train, y_train[col], random_state=42) for col in y_train.columns])
 
-# Standardize the new user data
-new_user_data = scaler.transform(new_user_data)
+# Average the mutual information scores across all disorders to get a global importance score
+average_mi_scores = np.mean(mi_scores, axis=0)
 
-# Predict relevant mental disorder
-predictions = model.predict(new_user_data)
-predicted_disorder = np.argmax(predictions, axis=1)
+# Select the top questions based on the average mutual information scores
+selected_questions = np.argsort(average_mi_scores)[-20:]  # Selecting top 20 questions
 
-# Decode the predicted disorder back to its original label
-disorder_name = le_disorder.inverse_transform(predicted_disorder)
+# Filter the training and testing sets to include only the selected questions
+X_train_reduced = X_train.iloc[:, selected_questions]
+X_test_reduced = X_test.iloc[:, selected_questions]
 
-print(f"Predicted mental disorder: {disorder_name[0]}")
+# Train a Random Forest model with the reduced set of questions
+model_reduced = RandomForestClassifier(random_state=42)
+model_reduced.fit(X_train_reduced, y_train)
+
+# Evaluate the performance
+accuracy = model_reduced.score(X_test_reduced, y_test)
+print("Accuracy with reduced questions:", accuracy)
+
+# Output the selected questions
+selected_questions_info = X.columns[selected_questions]
+print("Selected questions based on mutual information and feature importance:")
+for question in selected_questions_info:
+    print(question)

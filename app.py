@@ -1,25 +1,20 @@
 import os
-
-# Disable oneDNN custom operations
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
-
 from flask import Flask, render_template, request
 import pandas as pd
 import numpy as np
 from tensorflow.keras.models import load_model
 import pickle
-
-
+from model import adaptive_predict_disorder  # Import the function from model.py
 
 app = Flask(__name__)
 
 # Load the model and preprocessing tools
 model = load_model('models/question_selector_model.h5')
-with open('models/le_gender.pkl', 'rb', encoding='utf-8') as f:
+with open('models/le_gender.pkl', 'rb') as f:
     le_gender = pickle.load(f)
-with open('models/le_location.pkl', 'rb', encoding='utf-8') as f:
+with open('models/le_location.pkl', 'rb') as f:
     le_location = pickle.load(f)
-with open('models/scaler.pkl', 'rb', encoding='utf-8') as f:
+with open('models/scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -42,36 +37,13 @@ def index():
 
 @app.route('/result', methods=['POST'])
 def result():
-    user_responses = [int(request.form[f'question_{i+1}']) for i in range(20)]
-    result = classify_mental_disorder('data/question_final.csv', user_responses)
+    user_responses = [int(request.form[f'question_{i+1}']) for i in range(len(request.form))]
+    result = adaptive_predict_disorder('data/question_final.csv', user_responses)
     return render_template('result.htm', result=result)
-
-def classify_mental_disorder(csv_file_path, user_responses):
-    df = pd.read_csv(csv_file_path)
-    disorder_scores = {
-        "Depression": 0,
-        "Anxiety": 0,
-        "ADHD": 0,
-        "PTSD": 0,
-        "Psychosis & Schizophrenia": 0,
-        "Bipolar": 0
-    }
-    
-    for i, row in df.iterrows():
-        if i >= len(user_responses):
-            break
-        
-        disorder = row['Mental_Disorder']
-        response_value = user_responses[i]
-        disorder_scores[disorder] += response_value
-    
-    predicted_disorder = max(disorder_scores, key=disorder_scores.get)
-    
-    return predicted_disorder
 
 def select_relevant_questions(predictions):
     top_disorders = np.argsort(predictions[0])[-2:]  # Select top 2 disorders
-    df = pd.read_csv('data/questions_data.csv')
+    df = pd.read_csv('data/question_final.csv')
     selected_questions = df[df['Mental_Disorder'].isin(top_disorders)].head(20)
     return selected_questions.to_dict('records')
 
